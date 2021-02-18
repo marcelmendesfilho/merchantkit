@@ -58,7 +58,28 @@ internal struct ServerReceiptVerificationResponseParser {
             expiryDate = nil
         }
         
-        return ReceiptEntry(productIdentifier: productIdentifier, expiryDate: expiryDate)
+        let purchaseDate: Date?
+        if let formattedPurchase = object["purchase_date_ms"] as? String, let milliseconds = Int(formattedPurchase) {
+            purchaseDate = Date(millisecondsSince1970: milliseconds)
+        } else {
+            purchaseDate = nil
+        }
+
+        let originalPurchaseDate: Date?
+        if let formattedOriginalPurchase = object["original_purchase_date_ms"] as? String, let milliseconds = Int(formattedOriginalPurchase) {
+            originalPurchaseDate = Date(millisecondsSince1970: milliseconds)
+        } else {
+            originalPurchaseDate = nil
+        }
+
+        let cancellationDate: Date?
+        if let formattedCancellationDate = object["cancellation_date_ms"] as? String, let milliseconds = Int(formattedCancellationDate) {
+            cancellationDate = Date(millisecondsSince1970: milliseconds)
+        } else {
+            cancellationDate = nil
+        }
+
+        return ReceiptEntry(productIdentifier: productIdentifier, expiryDate: expiryDate, purchaseDate: purchaseDate, originalPurchaseDate: originalPurchaseDate, cancelationDate: cancellationDate)
     }
     
     enum ResponseDataError : Swift.Error {

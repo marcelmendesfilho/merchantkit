@@ -90,6 +90,9 @@ extension LocalReceiptPayloadParser {
 
             var expiryDate: Date?
             var productIdentifier: String?
+            var purchaseDate: Date?
+            var originalPurchaseDate: Date?
+            var cancelationDate: Date?
 
             for (type, attribute) in self.foundInAppPurchaseAttributes {
                 switch type {
@@ -97,13 +100,19 @@ extension LocalReceiptPayloadParser {
                         productIdentifier = attribute.stringValue
                     case .subscriptionExpirationDate:
                         expiryDate = attribute.iso8601DateValue
+                    case .purchaseDate:
+                        purchaseDate = attribute.iso8601DateValue
+                    case .originalPurchaseDate:
+                        originalPurchaseDate = attribute.iso8601DateValue
+                    case .cancellationDate:
+                        cancelationDate = attribute.iso8601DateValue
                     default:
                         break
                 }
             }
 
             if let productIdentifier = productIdentifier {
-                let entry = ReceiptEntry(productIdentifier: productIdentifier, expiryDate: expiryDate)
+                let entry = ReceiptEntry(productIdentifier: productIdentifier, expiryDate: expiryDate, purchaseDate: purchaseDate, originalPurchaseDate: originalPurchaseDate, cancelationDate: cancelationDate)
                 self.receiptEntries.append(entry)
             }
         } catch let error {
