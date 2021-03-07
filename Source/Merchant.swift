@@ -455,7 +455,7 @@ extension Merchant : StoreInterfaceDelegate {
         }
     }
     
-    internal func storeInterface(_ storeInterface: StoreInterface, didFailToPurchaseProductWith productIdentifier: String, error: Error) {
+    internal func storeInterface(_ storeInterface: StoreInterface, didFailToPurchaseProductWith productIdentifier: String, error: Error, completion: @escaping () -> Void) {
         if let product = self.product(withIdentifier: productIdentifier) {
             for observer in self.storePurchaseObservers.observers(for: \.purchaseProducts) {
                 observer.merchant(self, didFinishPurchaseWith: .failure(error), forProductWith: product.identifier)
@@ -463,6 +463,7 @@ extension Merchant : StoreInterfaceDelegate {
         } else {
             self.logger.log(message: "Purchase failure \"\(error.localizedDescription)\" was not handled as the `productIdentifier` (\"\(productIdentifier)\") was unknown to the `Merchant`. If you recognize the product identifier, ensure the corresponding `Product` has been registered before attempting to commit purchases.", category: .storeInterface)
         }
+        completion()
     }
     
     internal func storeInterfaceWillStartRestoringPurchases(_ storeInterface: StoreInterface) {
