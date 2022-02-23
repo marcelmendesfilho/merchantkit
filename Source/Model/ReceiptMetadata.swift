@@ -8,8 +8,9 @@ public struct ReceiptMetadata : Equatable {
     public let originalPurchaseDate: Date?
     public let cancelationDate: Date?
     public let originalTransactionId: String?
+    public let cancellationReason: String?
 
-    public init(originalApplicationVersion: String = "", bundleIdentifier: String = "", creationDate: Date? = nil, purchaseDate: Date? = nil, originalPurchaseDate: Date? = nil, cancelationDate: Date? = nil, originalTransactionId: String? = nil) {
+    public init(originalApplicationVersion: String = "", bundleIdentifier: String = "", creationDate: Date? = nil, purchaseDate: Date? = nil, originalPurchaseDate: Date? = nil, cancelationDate: Date? = nil, originalTransactionId: String? = nil, cancellationReason: String? = nil) {
         self.originalApplicationVersion = originalApplicationVersion
         self.bundleIdentifier = bundleIdentifier
         self.creationDate = creationDate
@@ -17,10 +18,11 @@ public struct ReceiptMetadata : Equatable {
         self.originalPurchaseDate = originalPurchaseDate
         self.cancelationDate = cancelationDate
         self.originalTransactionId = originalTransactionId
+        self.cancellationReason = cancellationReason
     }
     
     public var description: String {
-        return self.defaultDescription(withProperties: ("originalApplicationVersion", self.originalApplicationVersion), ("bundleIdentifier", self.bundleIdentifier ?? "nil"), ("creationDate", self.creationDate ?? "nil"), ("purchaseDate", self.purchaseDate ?? "nil"), ("originalPurchaseDate", self.originalPurchaseDate ?? "nil"), ("cancelationDate", self.cancelationDate ?? "nil"), ("originalTransactionId", self.originalTransactionId ?? "nil"))
+        return "originalApplicationVersion: \(originalApplicationVersion) | bundleIdentifier: \(bundleIdentifier) | creationDate: \(String(describing: creationDate)) | purchaseDate: \(String(describing: purchaseDate)) | originalPurchaseDate: \(String(describing: originalPurchaseDate)) | cancelationDate: \(String(describing: cancelationDate)) | originalTransactionId: \(originalTransactionId ?? "") | cancellationReason: \(cancellationReason ?? "")"
     }
 
 }

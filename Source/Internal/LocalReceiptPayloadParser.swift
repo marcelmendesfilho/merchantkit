@@ -115,7 +115,7 @@ extension LocalReceiptPayloadParser {
             }
 
             if let productIdentifier = productIdentifier {
-                let entry = ReceiptEntry(productIdentifier: productIdentifier, expiryDate: expiryDate, purchaseDate: purchaseDate, originalPurchaseDate: originalPurchaseDate, cancelationDate: cancelationDate, originalTransactionId: originalTransactionId)
+                let entry = ReceiptEntry(productIdentifier: productIdentifier, expiryDate: expiryDate, purchaseDate: purchaseDate, originalPurchaseDate: originalPurchaseDate, cancelationDate: cancelationDate, originalTransactionId: originalTransactionId, cancellationReason: nil)
                 self.receiptEntries.append(entry)
             }
         } catch let error {

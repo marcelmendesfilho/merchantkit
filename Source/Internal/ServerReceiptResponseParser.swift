@@ -81,7 +81,9 @@ internal struct ServerReceiptVerificationResponseParser {
         
         let originalTransactionId: String? = object["original_transaction_id"] as? String
 
-        return ReceiptEntry(productIdentifier: productIdentifier, expiryDate: expiryDate, purchaseDate: purchaseDate, originalPurchaseDate: originalPurchaseDate, cancelationDate: cancellationDate, originalTransactionId: originalTransactionId)
+        let cancellationReason: String? = object["cancellation_reason"] as? String
+
+        return ReceiptEntry(productIdentifier: productIdentifier, expiryDate: expiryDate, purchaseDate: purchaseDate, originalPurchaseDate: originalPurchaseDate, cancelationDate: cancellationDate, originalTransactionId: originalTransactionId, cancellationReason: cancellationReason)
     }
     
     enum ResponseDataError : Swift.Error {
