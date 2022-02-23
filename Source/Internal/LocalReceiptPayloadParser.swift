@@ -139,7 +139,19 @@ extension LocalReceiptPayloadParser {
     }
 
     private func didFindInAppPurchaseReceiptAttribute(of attributeType: InAppPurchaseReceiptAttributeType, attribute: ReceiptAttributeASN1SetProcessor.ReceiptAttribute) {
-        self.foundInAppPurchaseAttributes.append((attributeType, attribute))
+            switch attributeType {
+            case .originalTransactionIdentifier:
+                self.metadataBuilder.originalTransactionId = attribute.stringValue ?? ""
+            case .purchaseDate:
+                self.metadataBuilder.purchaseDate = attribute.iso8601DateValue
+            case .originalPurchaseDate:
+                self.metadataBuilder.originalPurchaseDate = attribute.iso8601DateValue
+            case .cancellationDate:
+                self.metadataBuilder.cancellationDate = attribute.iso8601DateValue
+            default:
+                _ = 0
+            }
+//        self.foundInAppPurchaseAttributes.append((attributeType, attribute))
     }
 }
 
