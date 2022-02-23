@@ -12,16 +12,19 @@ public struct ReceiptEntry : CustomStringConvertible { // Ideally, this would be
     public let originalPurchaseDate: Date?
     /// Cancelation date, if available
     public let cancelationDate: Date?
+    /// Original transaction id, if available
+    public let originalTransactionId: String?
     
-    public init(productIdentifier: String, expiryDate: Date?, purchaseDate: Date?, originalPurchaseDate: Date?, cancelationDate: Date?) {
+    public init(productIdentifier: String, expiryDate: Date?, purchaseDate: Date?, originalPurchaseDate: Date?, cancelationDate: Date?, originalTransactionId: String?) {
         self.productIdentifier = productIdentifier
         self.expiryDate = expiryDate
         self.purchaseDate = purchaseDate
         self.originalPurchaseDate = originalPurchaseDate
         self.cancelationDate = cancelationDate
+        self.originalTransactionId = originalTransactionId
     }
     
     public var description: String {
-        return self.defaultDescription(withProperties: ("productIdentifier", self.productIdentifier), ("expiryDate", self.expiryDate ?? "nil"), ("purchaseDate", self.purchaseDate ?? "nil"), ("originalPurchaseDate", self.originalPurchaseDate ?? "nil"), ("cancelationDate", self.cancelationDate ?? "nil"))
+        return self.defaultDescription(withProperties: ("productIdentifier", self.productIdentifier), ("expiryDate", self.expiryDate ?? "nil"), ("purchaseDate", self.purchaseDate ?? "nil"), ("originalPurchaseDate", self.originalPurchaseDate ?? "nil"), ("cancelationDate", self.cancelationDate ?? "nil"), ("originalTransactionId", self.originalTransactionId ?? "nil"))
     }
 }
