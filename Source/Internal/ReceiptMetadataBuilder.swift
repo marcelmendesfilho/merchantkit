@@ -15,6 +15,6 @@ internal struct ReceiptMetadataBuilder {
     }
     
     func build() -> ReceiptMetadata {
-        return ReceiptMetadata(originalApplicationVersion: self.originalApplicationVersion, bundleIdentifier: self.bundleIdentifier, creationDate: self.creationDate, purchaseDate: self.purchaseDate, originalPurchaseDate: self.originalPurchaseDate, cancelationDate: self.cancellationDate, originalTransactionId: self.originalTransactionId, cancellationReason: self.cancellationReason)
+        return ReceiptMetadata(originalApplicationVersion: self.originalApplicationVersion, bundleIdentifier: self.bundleIdentifier, creationDate: self.creationDate, purchaseDate: self.purchaseDate, originalPurchaseDate: self.originalPurchaseDate, cancellationDate: self.cancellationDate, originalTransactionId: self.originalTransactionId, cancellationReason: self.cancellationReason)
     }
 }
