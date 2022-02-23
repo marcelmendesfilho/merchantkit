@@ -18,4 +18,9 @@ public struct ReceiptMetadata : Equatable {
         self.cancelationDate = cancelationDate
         self.originalTransactionId = originalTransactionId
     }
+    
+    public var description: String {
+        return self.defaultDescription(withProperties: ("originalApplicationVersion", self.originalApplicationVersion), ("bundleIdentifier", self.bundleIdentifier ?? "nil"), ("creationDate", self.creationDate ?? "nil"), ("purchaseDate", self.purchaseDate ?? "nil"), ("originalPurchaseDate", self.originalPurchaseDate ?? "nil"), ("cancelationDate", self.cancelationDate ?? "nil"), ("originalTransactionId", self.originalTransactionId ?? "nil"))
+    }
+
 }
