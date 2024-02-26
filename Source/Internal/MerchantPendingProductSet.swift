@@ -19,6 +19,7 @@ extension Merchant {
         internal enum Event {
             case purchased
             case restored
+            case revoked
         }
     }
 }

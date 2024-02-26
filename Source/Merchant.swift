@@ -382,6 +382,18 @@ extension Merchant {
 
 // MARK: `StoreInterfaceDelegate` Conformance
 extension Merchant : StoreInterfaceDelegate {
+    
+    internal func storeInterface(_ storeInterface: StoreInterface, didRevokeEntitlementsForProductIdentifiers productIdentifiers: [String]) {
+        
+        productIdentifiers.forEach { productIdentifier in
+            if let product = self.product(withIdentifier: productIdentifier) {
+                self.pendingProducts[.revoked].insert(product)
+            }
+        }
+        
+        self.delegate.merchant(self, didRevokeEntitlementsForProductIdentifiers: self.pendingProducts[.revoked])
+    }
+    
     internal func storeInterfaceWillUpdatePurchases(_ storeInterface: StoreInterface) {
         
     }

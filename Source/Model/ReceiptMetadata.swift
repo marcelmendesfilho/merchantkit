@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ReceiptMetadata : Equatable {
+public struct ReceiptMetadata : Equatable, Codable {
     public let originalApplicationVersion: String
     public let bundleIdentifier: String
     public let creationDate: Date?
