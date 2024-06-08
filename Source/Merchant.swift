@@ -124,7 +124,7 @@ public final class Merchant {
         return self.makeTask(initializing: {
             let task = CommitPurchaseTask(for: purchase, applying: discount, with: self)
             
-            return task 
+            return task
         })
     }
     
@@ -243,7 +243,7 @@ extension Merchant {
                             
                                 if !updatedProducts.isEmpty {
                                     DispatchQueue.main.async {
-                                        self.didChangeState(for: updatedProducts)
+                                        self.didChangeState(for: updatedProducts, receipt: receipt.metadata)
                                     }
                                 }
                                 
@@ -357,8 +357,8 @@ extension Merchant {
 // MARK: Product state changes
 extension Merchant {
     /// Call on main thread only.
-    private func didChangeState(for products: Set<Product>) {
-        self.delegate.merchant(self, didChangeStatesFor: products)
+    private func didChangeState(for products: Set<Product>, receipt: ReceiptMetadata?) {
+        self.delegate.merchant(self, didChangeStatesFor: products, receipt: receipt)
     }
 }
 
@@ -427,7 +427,7 @@ extension Merchant : StoreInterfaceDelegate {
                 let result = self.configuration.storage.save(record)
             
                 if result == .didChangeRecords {
-                    self.didChangeState(for: [product])
+                    self.didChangeState(for: [product], receipt: nil)
                 }
                 
                 if case .subscription(_) = product.kind {
@@ -455,7 +455,7 @@ extension Merchant : StoreInterfaceDelegate {
                 let result = self.configuration.storage.save(record)
                 
                 if result == .didChangeRecords {
-                    self.didChangeState(for: [product])
+                    self.didChangeState(for: [product], receipt: nil)
                 }
                 
                 for observer in self.storePurchaseObservers.observers(for: \.restorePurchasedProducts) {

@@ -148,10 +148,12 @@ extension LocalReceiptPayloadParser {
                 self.metadataBuilder.originalPurchaseDate = attribute.iso8601DateValue
             case .cancellationDate:
                 self.metadataBuilder.cancellationDate = attribute.iso8601DateValue
+            case .subscriptionExpirationDate:
+                self.metadataBuilder.subscriptionExpirationDate = attribute.iso8601DateValue
             default:
                 _ = 0
             }
-//        self.foundInAppPurchaseAttributes.append((attributeType, attribute))
+        self.foundInAppPurchaseAttributes.append((attributeType, attribute))
     }
 }
 
