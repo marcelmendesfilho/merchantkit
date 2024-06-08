@@ -153,7 +153,7 @@ extension LocalReceiptPayloadParser {
             default:
                 _ = 0
             }
-        self.foundInAppPurchaseAttributes.append((attributeType, attribute))
+//        self.foundInAppPurchaseAttributes.append((attributeType, attribute))
     }
 }
 
