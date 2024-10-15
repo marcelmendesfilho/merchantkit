@@ -1,4 +1,5 @@
 import os.log
+import Foundation
 
 internal class Logger {
     internal var isActive: Bool = false

@@ -1,5 +1,7 @@
 /// A `PurchaseDiscount` is made up of parameters that must be generated on an application's server, if you want to apply an available discount for a `Purchase`. The `offerIdentifier` corresponds to the `identifier` of a `SubscriptionTerms.RetentionOffer`.
 /// You can supply this `PurchaseDiscount` when you commit a compatible purchase.
+import Foundation
+
 public struct PurchaseDiscount {
     /// The identifier of the offer. This is defined in App Store Connect.
     public let offerIdentifier: String
