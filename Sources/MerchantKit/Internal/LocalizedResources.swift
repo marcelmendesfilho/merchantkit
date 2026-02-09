@@ -46,7 +46,12 @@ internal class LocalizedStringSource {
 
 extension LocalizedStringSource {
     private func bundle(for locale: Locale) -> Bundle {
-        let frameworkBundle = Bundle(for: Merchant.self)
+        let frameworkBundle: Bundle
+        #if SWIFT_PACKAGE
+        frameworkBundle = .module
+        #else
+        frameworkBundle = Bundle(for: Merchant.self)
+        #endif
         
         // shockingly, this is the best way to specify a language for the localizedString(forKey:value:table:) Foundation API
         let bundleForLocalePath = locale.languageCode.flatMap { frameworkBundle.path(forResource: $0, ofType: "lproj") }

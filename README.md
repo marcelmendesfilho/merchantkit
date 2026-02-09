@@ -60,6 +60,15 @@ The codebase is in flux right now and the project does not guarantee API stabili
 
 ## Installation
 
+#### Swift Package Manager (Xcode)
+
+To integrate `MerchantKit` into your Xcode project using Swift Package Manager:
+
+1. Open **File > Add Package Dependencies...**
+2. Use the package URL: `https://github.com/benjaminmayo/merchantkit.git`
+3. Choose a dependency rule (for example, **Up to Next Major Version**)
+4. Add the `MerchantKit` product to your app target
+
 #### CocoaPods
 
 To integrate  `MerchantKit` into your Xcode project using CocoaPods, specify it in your `Podfile`.
